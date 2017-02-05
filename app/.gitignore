@@ -1,0 +1,6 @@
+/build
+src/test
+*.iml
+*.apk
+*.pro
+src/main/res/values/strings.xml

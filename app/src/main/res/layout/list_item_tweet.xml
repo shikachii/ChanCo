@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xyz.shikachii.chanco02.StatusLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <com.loopj.android.image.SmartImageView
+        android:id="@+id/icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_launcher"
+
+        android:layout_alignTop="@+id/text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NAME"
+
+        android:textSize="13sp"
+        android:layout_alignTop="@+id/time"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/screen_name"
+        android:layout_toStartOf="@+id/screen_name"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp" />
+
+    <TextView
+        android:id="@+id/screen_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\uFF20screen_name"
+
+        android:textSize="12sp"
+        android:layout_alignTop="@+id/name"
+        android:layout_toLeftOf="@+id/time"
+        android:layout_toStartOf="@+id/time"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶんほんぶん"
+
+        android:layout_toRightOf="@+id/icon"
+        android:layout_toEndOf="@+id/icon"
+        android:layout_below="@+id/name"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        />
+
+    <TextView
+        android:id="@+id/via"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="via ChanCo"
+        android:textSize="12sp"
+        android:layout_below="@+id/text"
+        android:layout_alignLeft="@+id/text"
+        android:layout_alignStart="@+id/text" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout2"
+        android:layout_below="@+id/text"
+        android:layout_alignRight="@+id/key"
+        android:layout_alignEnd="@+id/key"
+        android:layout_marginRight="2dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RT:40 "
+        android:id="@+id/rt"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" FAV:10"
+        android:id="@+id/fav"
+        android:textSize="12dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/rtby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RT : @xxxxxxx"
+        android:textSize="12sp"
+        android:layout_alignBottom="@+id/rtIcon"
+        android:layout_toRightOf="@+id/rtIcon"
+        android:layout_toEndOf="@+id/rtIcon" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="12sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <com.loopj.android.image.SmartImageView
+        android:id="@+id/rtIcon"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:src="@drawable/ic_launcher"
+
+        android:layout_below="@+id/via"
+        android:layout_alignLeft="@+id/via"
+        android:layout_alignStart="@+id/via" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rtIcon"
+        android:layout_alignLeft="@+id/rtIcon"
+        android:layout_alignStart="@+id/rtIcon" >
+
+        <com.loopj.android.image.SmartImageView
+            android:id="@+id/image1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher"
+            />
+
+        <android.widget.Space
+            android:layout_width="5dp"
+            android:layout_height="wrap_content" />
+
+        <com.loopj.android.image.SmartImageView
+            android:id="@+id/image2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher"
+            />
+
+        <android.widget.Space
+            android:layout_width="5dp"
+            android:layout_height="wrap_content" />
+
+        <com.loopj.android.image.SmartImageView
+            android:id="@+id/image3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher"
+            />
+
+        <android.widget.Space
+            android:layout_width="5dp"
+            android:layout_height="wrap_content" />
+
+        <com.loopj.android.image.SmartImageView
+            android:id="@+id/image4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="鍵"
+
+        android:layout_alignBottom="@+id/via"
+        android:layout_alignRight="@+id/text"
+        android:layout_alignEnd="@+id/text" />
+
+</xyz.shikachii.chanco02.StatusLayout>

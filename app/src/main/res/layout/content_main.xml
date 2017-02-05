@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="0dp" >
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/menu_list"
+        android:name="xyz.shikachii.chanco02.Time_line_menu"
+        android:layout="@layout/time_line_menu"/>
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list"
+        android:name="xyz.shikachii.chanco02.TweetListFragment"
+        tools:layout="@layout/list_item_tweet"
+        android:layout_below="@+id/menu_list"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tweet"
+        android:name="xyz.shikachii.chanco02.TweetFragment"
+        tools:layout="@layout/activity_tweet" />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/image_view"
+        android:name="xyz.shikachii.chanco02.ImageFragment"
+        tools:layout="@layout/fragment_image"
+        android:layout_below="@+id/menu_list"
+        />
+
+</RelativeLayout>
