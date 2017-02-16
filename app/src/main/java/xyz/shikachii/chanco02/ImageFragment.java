@@ -46,6 +46,11 @@ public class ImageFragment extends Fragment {
 
         image_fragment.setOnClickListener(new View.OnClickListener(){
             @Override
+            public void onClick(View v){}
+        });
+
+        image.setOnClickListener(new View.OnClickListener(){
+            @Override
             public void onClick(View v){
                 hideImage();
             }

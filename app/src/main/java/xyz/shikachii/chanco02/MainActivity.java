@@ -5,6 +5,7 @@ import android.media.Image;
 import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -73,6 +74,15 @@ public class MainActivity extends FragmentActivity implements Time_line_menu.onC
             finish();
         }
     }
+
+    /*
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent e) {
+        // キーコード表示
+        showToast("KeyCode:"+e.getKeyCode());
+
+        return super.dispatchKeyEvent(e);
+    }*/
 
     @Override
     protected void onDestroy() {

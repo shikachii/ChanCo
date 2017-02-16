@@ -93,6 +93,8 @@ public class TweetFragment extends Fragment {
             }
         });
 
+
+
         mDetail.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){}
@@ -260,6 +262,8 @@ public class TweetFragment extends Fragment {
                 })
                 .show();
     }
+
+
 
     private void showToast(String text){
         Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
