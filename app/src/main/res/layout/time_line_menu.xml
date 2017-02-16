@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/reload"
+            android:src="@drawable/twitter_logo"
             android:id="@+id/button1"
             android:layout_weight="1"
             android:padding="10dp"/>
@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:padding="10dp"/>
 
-        <ImageView
+<!--        <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/reload"
@@ -56,6 +56,7 @@
             android:id="@+id/button5"
             android:layout_weight="1"
             android:padding="10dp"/>
+-->
 
     </LinearLayout>
 

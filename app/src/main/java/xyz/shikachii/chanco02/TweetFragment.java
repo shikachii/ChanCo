@@ -37,10 +37,10 @@ public class TweetFragment extends Fragment {
 
     private EditText mInputText;
     private Twitter mTwitter;
-    private LinearLayout mUtil;
+    private LinearLayout mUtil,mDetail;
     private int code;
     private Status sta;
-    private TextView image_text;
+    private TextView image_text,detail;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -55,13 +55,17 @@ public class TweetFragment extends Fragment {
         mInputText = (EditText)v. findViewById(R.id.input_text);
         image_text = (TextView) v.findViewById(R.id.image_text);
         mUtil = (LinearLayout)v.findViewById(R.id.tweet_view);
+        mDetail = (LinearLayout)v.findViewById(R.id.tweet_detail);
+        detail = (TextView)v.findViewById(R.id.tweet_status);
 
         mUtil.setVisibility(View.GONE);
+        mDetail.setVisibility(View.GONE);
 
         v.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mUtil.setVisibility(View.GONE);
+                mDetail.setVisibility(View.GONE);
             }
         });
 
@@ -87,6 +91,11 @@ public class TweetFragment extends Fragment {
                 mCallback.onMenuSelected();
                 viewMenu(sta);
             }
+        });
+
+        mDetail.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){}
         });
 
         v.findViewById(R.id.action_tweet).setOnClickListener(new View.OnClickListener() {
@@ -194,6 +203,16 @@ public class TweetFragment extends Fragment {
 
     public void viewBox(Status tweet){
         mUtil.setVisibility(View.VISIBLE);
+        mDetail.setVisibility(View.VISIBLE);
+
+        if(tweet.isRetweet()) {
+            detail.setText("@" + tweet.getRetweetedStatus().getUser().getScreenName()
+                    + "\n" + tweet.getRetweetedStatus().getText());
+        }else{
+            detail.setText("@" + tweet.getUser().getScreenName()
+                    + "\n" + tweet.getText());
+        }
+
         sta = tweet;
     }
 
