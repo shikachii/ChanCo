@@ -161,6 +161,15 @@ public class StatusLayout extends RelativeLayout{
                     }
                 }
         );
+
+        mIconView.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        System.out.println(status.getUser().getScreenName());
+
+                    }
+                }
+        );
     }
 
     public void bindView(Status status){

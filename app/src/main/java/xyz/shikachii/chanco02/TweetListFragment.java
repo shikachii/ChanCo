@@ -61,7 +61,8 @@ public class TweetListFragment extends ListFragment {
     public void onListItemClick(ListView listView, View v, int position,long id) {
         super.onListItemClick(listView, v, position, id);
         Status item = (Status) listView.getItemAtPosition(sAdapter.getsCount() - position - 1);
-        System.out.println(mCallback);
+        //System.out.println(mCallback);
+        //System.out.println("print : " + id + ":" + listView);
         mCallback.onListSelected(item);
     }
 
