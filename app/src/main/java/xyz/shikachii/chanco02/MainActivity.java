@@ -68,6 +68,9 @@ public class MainActivity extends FragmentActivity implements Time_line_menu.onC
         setContentView(R.layout.content_main);
         hideImageView();
 
+        //Intent i = new Intent(getApplicationContext(),UserActivity.class);
+        //startActivity(i);
+
         if (!TwitterUtils.hasAccessToken(this)) {
             Intent intent = new Intent(this, TwitterOAuthActivity.class);
             startActivity(intent);
@@ -87,21 +90,37 @@ public class MainActivity extends FragmentActivity implements Time_line_menu.onC
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        System.out.println("onDestroy()");
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        System.out.println("onStop()");
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        System.out.println("onPause()");
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
+        System.out.println("onSave");
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        System.out.println("onRestore");
     }
 
     @Override
     protected void onRestart(){
         super.onRestart();
+        System.out.println("onRestart()");
     }
 
     /*

@@ -43,6 +43,8 @@ public class TweetListFragment extends ListFragment {
     public twitter4j.Paging p = new Paging();
     private ListView listView;
     private ProgressDialog progressDialog;
+    private static int isLive = 0;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,35 @@ public class TweetListFragment extends ListFragment {
         sAdapter = new TweetAdapter(getActivity());
         setListAdapter(sAdapter);
         sTwitter = TwitterUtilsStream.getTwitterInstance(getActivity());
+
+        showToast("UserStream開始");
+        sTwitter.addListener(new UserStreamAdapter() {
+            @Override
+            public void onStatus(final Status status) {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        sAdapter.insert(status, getNumber);
+                        getNumber++;
+                        listView = getListView();
+                        int pos = listView.getFirstVisiblePosition();
+                        View v = listView.getChildAt(0);
+                        int top = (v == null) ? 0 : v.getTop();
+
+                        listView.deferNotifyDataSetChanged();
+
+                        listView.setSelectionFromTop(pos + 1, top);
+
+                        if (pos == 0) { // && top == 0) { ← 表示位置が1番上のときという意味
+                            listView.smoothScrollToPositionFromTop(pos, 0);
+                        }
+                    }
+                });
+            }
+        });
+
+
+        reloadTimeLine();
     }
 
     @Override
@@ -90,37 +121,12 @@ public class TweetListFragment extends ListFragment {
     public void onStart(){
         super.onStart();
 
+        System.out.println("onStart");
+
         p.setCount(21);
-        reloadTimeLine();
         listView.setSelection(0);
 
-        showToast("UserStream開始");
-        sTwitter.addListener(new UserStreamAdapter() {
-            @Override
-            public void onStatus(final Status status) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        sAdapter.insert(status, getNumber);
-                        getNumber++;
-                        listView = getListView();
-                        int pos = listView.getFirstVisiblePosition();
-                        View v = listView.getChildAt(0);
-                        int top = (v == null) ? 0 : v.getTop();
-
-                        listView.deferNotifyDataSetChanged();
-
-                        listView.setSelectionFromTop(pos + 1, top);
-
-                        if (pos == 0) { // && top == 0) { ← 表示位置が1番上のときという意味
-                            listView.smoothScrollToPositionFromTop(pos, 0);
-                        }
-                    }
-                });
-            }
-        });
         sTwitter.user();
-
     }
 
     public void set(){
@@ -130,19 +136,33 @@ public class TweetListFragment extends ListFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        System.out.println("onDestroy().fragment");
         sTwitter.cleanUp();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        System.out.println("onStop().fragment");
+        //sTwitter.cleanUp();
     }
 
     @Override
     public void onPause(){
         super.onPause();
-        sTwitter.cleanUp();
+        System.out.println("onPause().fragment");
     }
 
     @Override
     public void onDestroyView(){
         super.onDestroyView();
         //sTwitter.user();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("onResume().fragment");
     }
 
     @Override
