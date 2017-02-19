@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -260,7 +261,11 @@ public class TweetFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(i == 0){
-                            showToast(status.getUser().getScreenName());
+                            Intent intent = new Intent(getActivity(),UserActivity.class);
+                            intent.putExtra("status",status);
+                            startActivity(intent);
+
+                            //showToast(status.getUser().getScreenName());
                         }else {
                             mImageCallback.onImageMenuClicked(status, i-1);
                             //showToast(mediaEntities[i].getMediaURL());

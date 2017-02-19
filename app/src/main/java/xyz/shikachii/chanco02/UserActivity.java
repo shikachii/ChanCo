@@ -1,19 +1,26 @@
 package xyz.shikachii.chanco02;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class UserActivity extends FragmentActivity {
+import twitter4j.Status;
+
+public class UserActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        TextView text = (TextView)findViewById(R.id.text_temp);
 
         Button button = (Button)findViewById(R.id.close_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -23,6 +30,10 @@ public class UserActivity extends FragmentActivity {
             }
         });
 
+        Intent intent = getIntent();
+        Status status = (Status) intent.getSerializableExtra("status");
+
+        text.setText("@"+status.getUser().getScreenName());
     }
 
     @Override

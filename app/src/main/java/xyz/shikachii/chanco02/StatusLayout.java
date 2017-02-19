@@ -27,6 +27,7 @@ public class StatusLayout extends RelativeLayout{
         void onImageSelected(Status item);
     }
 
+
     //name
     TextView mNameView;
     //screen_name

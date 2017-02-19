@@ -1,18 +1,13 @@
 package xyz.shikachii.chanco02;
 
 import android.content.Intent;
-import android.media.Image;
-import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import java.sql.Time;
 
 import twitter4j.Status;
 
@@ -67,9 +62,6 @@ public class MainActivity extends FragmentActivity implements Time_line_menu.onC
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.content_main);
         hideImageView();
-
-        //Intent i = new Intent(getApplicationContext(),UserActivity.class);
-        //startActivity(i);
 
         if (!TwitterUtils.hasAccessToken(this)) {
             Intent intent = new Intent(this, TwitterOAuthActivity.class);
