@@ -11,7 +11,6 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -54,7 +53,6 @@ public class TweetFragment extends Fragment {
         View v = inflater.inflate(R.layout.activity_tweet,container,false);
         mTwitter = TwitterUtils.getTwitterInstance(getActivity());
         mInputText = (EditText)v. findViewById(R.id.input_text);
-        image_text = (TextView) v.findViewById(R.id.image_text);
         mUtil = (LinearLayout)v.findViewById(R.id.tweet_view);
         mDetail = (LinearLayout)v.findViewById(R.id.tweet_detail);
         detail = (TextView)v.findViewById(R.id.tweet_status);
@@ -240,7 +238,6 @@ public class TweetFragment extends Fragment {
         media.add("@" + status.getUser().getScreenName());
 
         System.out.println(mediaEntities.length);
-        image_text.setText(" " + mediaEntities.length);
 
         if (mediaEntities.length > 0){
             //String[] media = new String[4];

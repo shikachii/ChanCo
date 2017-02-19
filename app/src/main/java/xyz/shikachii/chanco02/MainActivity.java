@@ -69,7 +69,7 @@ public class MainActivity extends FragmentActivity implements Time_line_menu.onC
             finish();
         }
     }
-
+    
     /*
     @Override
     public boolean dispatchKeyEvent(KeyEvent e) {

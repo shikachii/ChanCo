@@ -2,25 +2,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#33999999"
+    android:background="#88999999"
     android:id="@+id/image_fragment">
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="50sp"
         android:id="@+id/image_text"
-        />
+        /> -->
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="x"
-        android:id="@+id/image_close"
         android:layout_alignParentBottom="true"
-        android:layout_margin="0dp"
-        />
+        android:id="@+id/menu_list__"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="←"
+            android:textSize="50sp"
+            android:id="@+id/image_left"
+            android:layout_weight="1"
+
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="→"
+            android:id="@+id/image_right"
+            android:layout_weight="1"
+            android:textSize="50sp"
+
+            android:textAlignment="center"/>
+    </LinearLayout>
 
     <com.loopj.android.image.SmartImageView
         android:id="@+id/image1_1"
@@ -28,7 +46,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher"
 
-        android:layout_above="@+id/image_close"
+        android:layout_above="@+id/menu_list__"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"

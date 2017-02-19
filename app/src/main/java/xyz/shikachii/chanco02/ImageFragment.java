@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.image.SmartImageView;
@@ -17,9 +15,10 @@ import twitter4j.MediaEntity;
 import twitter4j.Status;
 
 public class ImageFragment extends Fragment {
-    private TextView imageText;
     private RelativeLayout image_fragment;
     private SmartImageView image;
+    private Status item;
+    private int max_image = 0,_index;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -32,21 +31,28 @@ public class ImageFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_image, container, false);
         image = (SmartImageView) v.findViewById(R.id.image1_1);
         image_fragment = (RelativeLayout) v.findViewById(R.id.image_fragment);
-        imageText = (TextView) v.findViewById(R.id.input_text);
-        Button imageClose = (Button) v.findViewById(R.id.image_close);
 
         hideImage();
-        imageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hideImage();
+        //imageClose.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+        //        hideImage();
                 //MainActivity->hideImageView
-            }
-        });
-
+        //    }
+        //});
         image_fragment.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){}
+        });
+
+        v.findViewById(R.id.image_right).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){ rightImage(); }
+        });
+
+       v.findViewById(R.id.image_left).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){ leftImage();}
         });
 
         image.setOnClickListener(new View.OnClickListener(){
@@ -67,26 +73,30 @@ public class ImageFragment extends Fragment {
         image_fragment.setVisibility(View.VISIBLE);
     }
 
+    public void leftImage(){
+        if(_index > 0) {
+            viewImage(item,--_index);
+        }
+    }
+
+    public void rightImage(){
+        if(_index < max_image-1){
+            viewImage(item,++_index);
+        }
+    }
+
     public void viewImage(Status status,int index){
         showImage();
-        Status item;
         MediaEntity[] mediaEntities;
-        int width,height;
 
-        if(status.isRetweet()){
-            item = status.getRetweetedStatus();
-        }else{
-            item = status;
-        }
+        _index = index;
+
+        if(status.isRetweet()){ item = status.getRetweetedStatus(); }
+        else{ item = status; }
 
         mediaEntities = item.getExtendedMediaEntities();
-        //showToast(getActivity() + mediaEntities[0].getMediaURLHttps() + image);
+        max_image = mediaEntities.length;
         Picasso.with(getActivity()).load(mediaEntities[index].getMediaURLHttps()).into(image);
-        //imageText.setText(status.getText());
-
-        width = image.getWidth();
-        height = image.getHeight();
-        //showToast(width + " : " + height);
 
     }
     private void showToast(String text) {
