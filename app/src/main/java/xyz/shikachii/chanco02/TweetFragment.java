@@ -80,8 +80,15 @@ public class TweetFragment extends Fragment {
         v.findViewById(R.id.rt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCallback.onMenuSelected();
-                setRT(sta);
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("確認").setMessage("RTしますか?")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mCallback.onMenuSelected();
+                                setRT(sta);
+                            }
+                        }).setNegativeButton("Cancel", null).show();
             }
         });
 
