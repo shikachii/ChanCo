@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.image.SmartImageView;
+import com.squareup.picasso.Picasso;
+
 import twitter4j.Status;
 
 public class UserActivity extends Activity {
@@ -20,7 +23,18 @@ public class UserActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        TextView text = (TextView)findViewById(R.id.text_temp);
+        TextView name = (TextView)findViewById(R.id.name_);
+        TextView screen_name = (TextView)findViewById(R.id.screen_name_);
+        SmartImageView icon = (SmartImageView)findViewById(R.id.image_icon);
+
+        TextView bio = (TextView)findViewById(R.id.bio);
+
+        TextView tweet_count = (TextView)findViewById(R.id.tweet_counts);
+        TextView follows = (TextView)findViewById(R.id.follows);
+        TextView followers = (TextView)findViewById(R.id.followers);
+        TextView ff = (TextView)findViewById(R.id.ff);
+        TextView fav_counts = (TextView)findViewById(R.id.fav_counts);
+
 
         Button button = (Button)findViewById(R.id.close_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -33,7 +47,21 @@ public class UserActivity extends Activity {
         Intent intent = getIntent();
         Status status = (Status) intent.getSerializableExtra("status");
 
-        text.setText("@"+status.getUser().getScreenName());
+        name.setText(status.getUser().getName());
+        screen_name.setText("@"+status.getUser().getScreenName());
+
+        Picasso.with(getApplicationContext())
+                .load(status.getUser().getOriginalProfileImageURLHttps())
+                .into(icon);
+
+        bio.setText(status.getUser().getDescription());
+
+        tweet_count.setText("ツイート数 : " + status.getUser().getStatusesCount());
+        follows.setText("フォロー : " + status.getUser().getFriendsCount());
+        followers.setText("フォロワー : " + status.getUser().getFollowersCount());
+        ff.setText("ff比 : " + (double)status.getUser().getFollowersCount() / (double)status.getUser().getFriendsCount());
+        fav_counts.setText("fav数 : " + status.getUser().getFavouritesCount());
+
     }
 
     @Override

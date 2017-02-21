@@ -1,20 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="50sp"
-        android:id="@+id/text_temp"
-        />
+        android:id="@+id/profile"
+        android:layout_margin="10dp"
+
+        android:background="#888888">
+
+        <com.loopj.android.image.SmartImageView
+            android:id="@+id/image_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher"
+            android:padding="5dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:textSize="30sp"
+            android:id="@+id/name_"
+            android:layout_toRightOf="@+id/image_icon"
+            android:layout_toEndOf="@+id/image_icon"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="screen_name"
+            android:id="@+id/screen_name_"
+            android:textSize="20sp"
+            android:layout_below="@+id/name_"
+            android:layout_toRightOf="@+id/image_icon"
+            android:layout_toEndOf="@+id/image_icon"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp" />
+    </RelativeLayout>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/close_button"
 
-        android:layout_below="@+id/text_temp"
+        android:layout_below="@+id/info_"
         android:text="close"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="bio"
+        android:id="@+id/bio"
+        android:layout_below="@+id/profile"
+        android:background="#888888"
+        android:layout_margin="10dp"
+        android:textSize="16sp"
+        android:padding="5dp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/info_"
+        android:layout_below="@id/bio"
+        android:background="#888888"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tweet count"
+            android:id="@+id/tweet_counts"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Follows"
+            android:id="@+id/follows"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="followers"
+            android:id="@+id/followers"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FF"
+            android:id="@+id/ff"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fav_counts"
+            android:id="@+id/fav_counts"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
 </RelativeLayout>

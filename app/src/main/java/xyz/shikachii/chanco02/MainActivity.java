@@ -64,12 +64,12 @@ public class MainActivity extends FragmentActivity implements Time_line_menu.onC
         hideImageView();
 
         if (!TwitterUtils.hasAccessToken(this)) {
-            Intent intent = new Intent(this, TwitterOAuthActivity.class);
+            Intent intent = new Intent(getApplicationContext(), TwitterOAuthActivity.class);
             startActivity(intent);
             finish();
         }
     }
-    
+
     /*
     @Override
     public boolean dispatchKeyEvent(KeyEvent e) {
