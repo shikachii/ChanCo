@@ -193,7 +193,9 @@ public class StatusLayout extends RelativeLayout{
             //RTされた人↓
             mNameView.setText(status.getRetweetedStatus().getUser().getName());
             mScreenNameView.setText("@" + status.getRetweetedStatus().getUser().getScreenName());
-            Picasso.with(getContext()).load(status.getRetweetedStatus().getUser().getProfileImageURL()).into(mIconView);
+            Picasso.with(getContext())
+                    .load(status.getRetweetedStatus().getUser().getOriginalProfileImageURLHttps())
+                    .into(mIconView);
             //mTextView.setText(status.getRetweetedStatus().getText());
             //TextView.setText(tweet);
             mTimeView.setText(created.toTimeSpanString(status.getRetweetedStatus().getCreatedAt()));
@@ -222,7 +224,9 @@ public class StatusLayout extends RelativeLayout{
 
             mNameView.setText(status.getUser().getName());
             mScreenNameView.setText("@" + status.getUser().getScreenName());
-            Picasso.with(getContext()).load(status.getUser().getProfileImageURL()).into(mIconView);
+            Picasso.with(getContext())
+                    .load(status.getUser().getOriginalProfileImageURLHttps())
+                    .into(mIconView);
             //mTextView.setText(status.getText());
             //mTextView.setText(tweet);
             mTimeView.setText(created.toTimeSpanString(status.getCreatedAt()));
