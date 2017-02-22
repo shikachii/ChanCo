@@ -85,6 +85,7 @@ public class TweetListFragment extends ListFragment {
                 }
             });
 
+            p.setCount(21);
             reloadTimeLine();
         }
     }
@@ -111,7 +112,7 @@ public class TweetListFragment extends ListFragment {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 boolean isLastItemVisible = totalItemCount == firstVisibleItem + visibleItemCount;
-                if (totalItemCount > 20 && isLastItemVisible) {
+                if (isLastItemVisible) {
                     reloadTimeLine();
                 }
             }
@@ -123,9 +124,6 @@ public class TweetListFragment extends ListFragment {
         super.onStart();
 
         System.out.println("onStart");
-
-        p.setCount(21);
-        listView.setSelection(0);
 
         sTwitter.user();
     }
