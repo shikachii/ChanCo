@@ -58,34 +58,35 @@ public class TweetListFragment extends ListFragment {
         setListAdapter(sAdapter);
         sTwitter = TwitterUtilsStream.getTwitterInstance(getActivity());
 
-        showToast("UserStream開始");
-        sTwitter.addListener(new UserStreamAdapter() {
-            @Override
-            public void onStatus(final Status status) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        sAdapter.insert(status, getNumber);
-                        getNumber++;
-                        listView = getListView();
-                        int pos = listView.getFirstVisiblePosition();
-                        View v = listView.getChildAt(0);
-                        int top = (v == null) ? 0 : v.getTop();
+        if(TwitterUtils.hasAccessToken(getActivity())) {
+            showToast("UserStream開始");
+            sTwitter.addListener(new UserStreamAdapter() {
+                @Override
+                public void onStatus(final Status status) {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            sAdapter.insert(status, getNumber);
+                            getNumber++;
+                            listView = getListView();
+                            int pos = listView.getFirstVisiblePosition();
+                            View v = listView.getChildAt(0);
+                            int top = (v == null) ? 0 : v.getTop();
 
-                        listView.deferNotifyDataSetChanged();
+                            listView.deferNotifyDataSetChanged();
 
-                        listView.setSelectionFromTop(pos + 1, top);
+                            listView.setSelectionFromTop(pos + 1, top);
 
-                        if (pos == 0) { // && top == 0) { ← 表示位置が1番上のときという意味
-                            listView.smoothScrollToPositionFromTop(pos, 0);
+                            if (pos == 0) { // && top == 0) { ← 表示位置が1番上のときという意味
+                                listView.smoothScrollToPositionFromTop(pos, 0);
+                            }
                         }
-                    }
-                });
-            }
-        });
+                    });
+                }
+            });
 
-
-        reloadTimeLine();
+            reloadTimeLine();
+        }
     }
 
     @Override
