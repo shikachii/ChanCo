@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import twitter4j.MediaEntity;
 import twitter4j.Status;
@@ -227,44 +230,58 @@ public class TweetFragment extends Fragment {
     private void viewMenu(Status tweet) {
         final MediaEntity[] mediaEntities;
         final Status status = tweet;
+        final SparseArray<String> m = new SparseArray<String>();
         final ArrayList<String> media = new ArrayList<String>();
+        final ArrayList<String> arrayList = new ArrayList<String>();
+
+        ArrayList<String> re = new ArrayList<String>();
+        ArrayList<String> id = new ArrayList<String>();
 
         if (tweet.isRetweet()) {
             mediaEntities = tweet.getRetweetedStatus().getExtendedMediaEntities();
+            re.add("共 @" + tweet.getRetweetedStatus().getUser().getScreenName());
+            m.put(0,"共 @" + tweet.getRetweetedStatus().getUser().getScreenName());
+            arrayList.addAll(re);
         } else {
             mediaEntities = tweet.getExtendedMediaEntities();
         }
 
-        media.add("@" + status.getUser().getScreenName());
+        id.add("人 @" + status.getUser().getScreenName());
+        m.put(1,"人 @" + status.getUser().getScreenName());
 
         System.out.println(mediaEntities.length);
 
         if (mediaEntities.length > 0){
-            //String[] media = new String[4];
+            int i = 2;
             for(MediaEntity me : mediaEntities){
                 media.add(me.getMediaURLHttps());
+                m.put(i,me.getMediaURLHttps());
+                ++i;
             }
-            /*
-            for ( int i = 1; i < mediaEntities.length; i++){
-                media.add(mediaEntities[i].getMediaURLHttps());
-            }
-            */
+        }
 
-            //mImageCallback.onImageMenuClicked(tweet);
+        arrayList.addAll(id);
+        arrayList.addAll(media);
+
+        for(int i = 0; i < m.size(); i++){
+            System.out.println(i + " : " + m.valueAt(i));
         }
 
         new AlertDialog.Builder(getActivity())
-                .setItems(media.toArray(new String[media.size()]), new DialogInterface.OnClickListener() {
+                .setItems(arrayList.toArray(new String[arrayList.size()]), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(i == 0){
-                            Intent intent = new Intent(getActivity(),UserActivity.class);
-                            intent.putExtra("status",status);
+                        System.out.println("keyAt : " + m.keyAt(i) + " i : " + i);
+                        if(m.keyAt(i) == 0){
+                            Intent intent = new Intent(getActivity(), UserActivity.class);
+                            intent.putExtra("status", status.getRetweetedStatus());
                             startActivity(intent);
-
-                            //showToast(status.getUser().getScreenName());
-                        }else {
-                            mImageCallback.onImageMenuClicked(status, i-1);
+                        }else if(m.keyAt(i) == 1) {
+                            Intent intent = new Intent(getActivity(), UserActivity.class);
+                            intent.putExtra("status", status);
+                            startActivity(intent);
+                        }else if(m.keyAt(i) >= 2 && m.keyAt(i) <= 5){
+                            mImageCallback.onImageMenuClicked(status, arrayList.size()-i-1);
                             //showToast(mediaEntities[i].getMediaURL());
                         }
                     }
