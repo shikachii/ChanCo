@@ -1,8 +1,2 @@
-# ChanCo(仮)
-Androidの非公式Twitterクライアントです.  
-
-# 使い方
-製作中なので使い方はありません.  
-それでも使いたい方は各自でビルドしてください.
-(strings.xmlが非公開なのでこのままだとビルドできません.)
-
+# ChanCo
+Unofficial Twitter Client for Android
